@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CreateRoom</title>
+</head>
+<style>
+     * {
+        margin: 0;
+        padding: 0%;
+    }
+
+    body {
+        background-color: #36393f;
+        
+    }
+
+    #createroom_wrapper{
+        background-color: #202225;
+        padding: 40px;
+        border-radius: 10px;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 100px auto;
+        align-items: center;
+    }
+    input[type="text"]
+   {
+    background-color: #2f3136;
+    border: none;
+    border-bottom: 2px solid #0f0f0f;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    width: 108%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #7289da;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+  }
+  input[type="submit"]:hover{
+    background-color: #516dd4;
+  }
+  h3{
+    color:rgb(199, 190, 190);
+    font-family: 'Great Vibes', cursive;
+    font-size: 18px;
+    margin-bottom: 20px;
+    
+  
+  }
+  p{
+    margin-top: 20px;
+    position: relative;
+    right: 20px;
+    color: whitesmoke;
+    font-family: 'Great Vibes', cursive;
+    font-size: 18px;
+  }
+  a{
+    position: relative;
+    bottom:27px;
+    left:74px;
+    font-size: 18px;
+    text-decoration: none;
+    color:  #086bbc;
+    font-family: 'Great Vibes', cursive;
+  }
+  a:hover{
+    color: #42a5f5;
+  }
+</style>
+
+<body>
+    <div id="createroom_wrapper">
+        {% for message in messages %}
+        <h3 id="status">{{message}}</h3>
+        {% endfor %}
+    <form method="post" action="createroom">
+        {% csrf_token %}
+        <input type="text"  id=" new-room " placeholder="Enter your room name" name="new_room" required />
+        <input type="submit" value="Create"/>
+    </form>
+    <p>view available </p><a href="viewroom">rooms</a>
+  
+</div>
+</body>
+<script>
+    let error_message = document.getElementById('status')
+    setTimeout(() => {
+        error_message.style.display = 'none'; 
+    }, 2000);
+    if (error_message.innerHTML == "Choose different room name")
+    {
+        error_message.style.color = "rgb(203, 33, 33)";
+    }
+    else{
+        error_message.style.color = "green";
+    }
+</script>
+
+</html>

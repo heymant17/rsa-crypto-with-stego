@@ -1,0 +1,683 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Room</title>
+
+
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0%;
+  }
+
+  body {
+    background-color: #36393f;
+    overflow-y: hidden;
+
+  }
+
+  #text_logo {
+
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Great Vibes', cursive;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: aquamarine;
+    margin-left: 50px;
+    cursor: pointer;
+
+
+  }
+
+  #text_logo:hover {
+    color: rgb(19, 125, 19)
+  }
+
+  #navbar {
+    font-family: 'Great Vibes', cursive;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+  }
+
+  #roomname {
+    color: #42a5f5;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: 150px;
+  }
+
+  #navbar a {
+    text-decoration: none;
+  }
+
+  #username {
+    font-size: 20px;
+    margin-left: 150px;
+    color: #086bbc;
+  }
+
+  #username:hover {
+    color: #42a5f5;
+  }
+
+  #logout {
+    font-size: 20px;
+    margin-left: 400px;
+    color: rgb(239, 94, 94);
+  }
+
+  #logout:hover {
+    color: red;
+  }
+
+  #wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 25px;
+
+  }
+
+  #wrapper div {
+    height: 550px;
+    width: 400px;
+    background-color: #202225;
+    word-wrap: break-word;
+    margin: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #086bbc;
+    border-radius: 5px;
+  }
+
+  #message_field {
+    align-items: center;
+    overflow: auto;
+  }
+
+  #send_message_btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #7289da;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 50px;
+    margin-top: 10px;
+
+  }
+
+  #send_message_btn:hover {
+    background-color: #516dd4;
+
+  }
+
+  #message_image {
+    display: block;
+    padding: 10px;
+    width: 350px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+    margin-left: 14px;
+    color: whitesmoke;
+
+  }
+
+  #message_image:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #input_message {
+    background-color: #2f3136;
+    border: none;
+    border-bottom: 2px solid #0f0f0f;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 380px;
+  }
+
+  #input_message:focus {
+    box-shadow: 0 0 5px #ddd inset, 0 0 5px #42a5f5;
+  }
+
+  #encrypt_message {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #7289da;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+  }
+
+  #encrypt_message:hover {
+
+    background-color: #516dd4;
+  }
+
+  textarea {
+    height: 300px;
+    display: block;
+
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #333333;
+    color: #FFFFFF;
+    margin-top: 100px;
+    margin-left: 25px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: sans-serif;
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    background-color: #F5F5F5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 7px;
+    background-color: #707678;
+  }
+
+
+  .extract_text {
+    width: 117%;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #7289da;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+
+
+  }
+
+  .extract_text:hover {
+
+    background-color: #516dd4;
+  }
+
+
+  hr {
+    margin-top: 17px;
+    margin-bottom: 25px;
+    border: 2px solid rgb(145, 140, 140);
+    border-radius: 1px;
+    width: 80%;
+  }
+
+  p {
+    color: rgb(10, 226, 250)
+  }
+
+  h3 {
+    padding: 10px;
+  }
+
+  h4 {
+
+    margin-bottom: 10px;
+    color: rgb(23, 167, 23);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+  }
+
+  #stego_image {
+    height: 300px;
+    width: 400px;
+    border: 2px solid black;
+
+  }
+
+  #display_image {
+    height: 300px;
+    width: 350px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+
+
+  }
+
+  #full_image {
+
+    display: none;
+
+
+  }
+</style>
+
+<body>
+  <div id="navbar">
+    <a href="javascript:location.reload(true)">
+      <h1 id="text_logo">CryptoWithStego</h1>
+    </a>
+    <a href="profile" id="username"> {{user.username}}</a>
+    <h1 id="roomname">{{roomname}}</h1>
+    <a href="/" id="logout">Logout</a>
+  </div>
+
+  <div id="wrapper">
+    <div id="encryption_wrapper">
+      <img src="{{ image_url }}" id="stego_image" alt="Stego image will appear here.." style="color: white;">
+      <button id="send_message_btn">Send</button>
+      <h4 id="encryption_noti"></h4>
+      <input type="file" id="message_image" name="file1">
+      <input type="textarea" placeholder="Enter Message.... " name="input_message" id="input_message" /><br>
+      <button id="encrypt_message">encrypt</button>
+
+    </div>
+
+    <div id="message_field">
+      {% for image in images %}
+      <div id="show_msg_form" style="height: 400px;
+      width: 300px;
+      display: flex;
+      border: none;
+      justify-content: center;
+      align-items:center;
+      margin-top: -10px; 
+      ">
+        <p>from {{image.username}} </p>
+        <input type="hidden" id="message_length" value="{{image.message_length}}">
+        <input type="hidden" name="stego_image" id="image_data" value="{{ image.img }}">
+        <img src="{{image.img}}" id="display_image" alt="Image">
+        <button class="extract_text" data-username="{{ image.username }}"
+          data-message-length="{{ image.message_length }}" data-image="{{ image.img }}">Extract-text</button>
+
+      </div>
+      <hr>
+      {% endfor %}
+
+    </div>
+
+    <textarea readonly placeholder="Extracted-Message will appear here" id="extracted_message" cols="50"
+      rows="20">{{extracted_message}}</textarea>
+
+
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.10.0/forge.min.js"></script>
+
+
+
+  <script>
+    console.log('hello')
+
+    let displayed_image = document.getElementById('stego_image')
+    let div_scroll = document.getElementById("message_field")
+    let encrypt_status = document.getElementById("message_encryption_status")
+    let encrypt_btn = document.getElementById("encrypt_message")
+    const roomName = document.getElementById("roomname").textContent;
+    const userName = document.getElementById("username").textContent;
+    let image_field = document.getElementById('message_image')
+    let messageInputDom = document.getElementById("input_message");
+    let encryption_noti = document.getElementById("encryption_noti")
+    let image_content = document.getElementById('image_data')
+    let message_length = document.getElementById('message_length')
+    let display_message = document.getElementById('extracted_message')
+
+
+
+    const chatSocket = new WebSocket(
+      'ws://' +
+      window.location.host +
+      '/ws/' +           //constructing a url for a websocket connection it basically tells server to establish websocket connection
+      roomName
+
+    );
+
+    //onclose eventlistener is triggered when webscoket connection is closed unexpectedly.
+    chatSocket.onclose = function (e) {
+      console.log("on close");
+    };
+
+    //onmessage is triggered when a message is received over websocket
+    chatSocket.onmessage = function (e) {
+      displayed_image.src = ""
+      encryption_noti.innerHTML = ""
+      const data = JSON.parse(e.data);
+      var imgdata = data.image
+      console.log('when img got length is', data.message_length)
+      const messageField = document.getElementById("message_field");
+      const showMsgForm = document.createElement('div');
+      showMsgForm.id = 'show_msg_form';
+      showMsgForm.style.cssText = 'height: 400px; width: 300px; display: flex; border: none; justify-content: center; align-items:center; margin-top: -10px;';
+
+      const usernameP = document.createElement('p');
+      usernameP.textContent = `from ${data.username}`;
+      showMsgForm.appendChild(usernameP);
+
+      const messageLengthInput = document.createElement('input');
+      messageLengthInput.type = 'hidden';
+      messageLengthInput.id = 'message_length';
+      messageLengthInput.value = data.message_length;
+      showMsgForm.appendChild(messageLengthInput);
+
+      const imageInput = document.createElement('input');
+      imageInput.type = 'hidden';
+      imageInput.name = 'stego_image';
+      imageInput.id = 'image_data';
+      imageInput.value = imgdata;
+      showMsgForm.appendChild(imageInput);
+
+      const img = document.createElement('img');
+      img.src = imgdata;
+      img.id = 'display_image';
+      img.alt = 'Image';
+      showMsgForm.appendChild(img);
+
+      const extractTextBtn = document.createElement('button');
+      extractTextBtn.className = 'extract_text';
+      extractTextBtn.setAttribute('data-username', data.username);
+      extractTextBtn.setAttribute('data-message-length', data.message_length);
+      extractTextBtn.setAttribute('data-image', imgdata);
+      extractTextBtn.textContent = 'Extract-text';
+      showMsgForm.appendChild(extractTextBtn);
+
+      const hr = document.createElement('hr');
+
+      messageField.appendChild(showMsgForm);
+      messageField.appendChild(hr);
+
+      div_scroll.scrollTop = div_scroll.scrollHeight
+
+    }
+/*
+
+    document.getElementById("send_message_btn").onclick = function (e) {
+      e.preventDefault(); //to prevent default form submission
+      console.log("when message is sent");
+      const messageObj = { image: imagedata, username: userName, room: roomName, message_length: message_length };
+      messageInputDom.value = "";
+      chatSocket.send(JSON.stringify(messageObj));
+    };*/
+
+    encrypt_btn.addEventListener('click', () => {
+      if (image_field.files.length != 0) {
+        console.log('inside encryption process')
+        if (messageInputDom.value.length != 0) {
+          if (messageInputDom.value.length <= 80) {
+            encryption_noti.innerHTML = `Generating Stego image, wait...`
+            const keypair = forge.pki.rsa.generateKeyPair(1028);
+            let publicKey = keypair.publicKey;
+            let privateKey = keypair.privateKey;
+            console.log(forge.pki.publicKeyToPem(privateKey))
+            privateKey = forge.pki.privateKeyToPem(privateKey)
+            let encrypted = publicKey.encrypt(messageInputDom.value, 'RSA-OAEP');
+            encrypted = forge.util.encode64(encrypted)
+            let key = privateKey.replace(/-----BEGIN RSA PRIVATE KEY-----\n|\n-----END RSA PRIVATE KEY-----/g, '')
+            let lines = key.split('\n')
+            lines.shift()
+            privateKey = lines.join('\n')
+            console.log('private key is : ', privateKey)
+            console.log('encryptes text is', encrypted)
+            let inputText = privateKey.trim() + encrypted.trim();
+            console.log('message to be hidden is', inputText)
+            let inputTextLength = inputText.length
+            steganographyHiding(inputText, function (dataURL) {
+              console.log('the data returned is', dataURL);
+              displayed_image.src = dataURL
+              encryption_noti.innerHTML = `Operation completed Now you can send image`
+              document.getElementById("send_message_btn").onclick = function (e) {
+                e.preventDefault(); //to prevent default form submission
+
+                encryption_noti.innerHTML = "sending image...."
+                console.log("when message is sent");
+                const messageObj = { image: dataURL, username: userName, room: roomName, message_length: inputTextLength };
+                messageInputDom.value = "";
+                chatSocket.send(JSON.stringify(messageObj));
+              }
+            })
+          }
+          else {
+            console.log('message too long')
+            encryption_noti.innerHTML = "Input text length too long."
+            messageInputDom.value = ""
+            setTimeout(() => {
+              encryption_noti.style.display = 'none';
+            }, 2000);
+          }
+        }
+        else {
+          encryption_noti.innerHTML = "Message Empty!"
+          setTimeout(() => {
+            encryption_noti.style.display = 'none';
+          }, 2000);
+        }
+      }
+
+      else {
+        encryption_noti.innerHTML = "Image field empty select valid image"
+        setTimeout(() => {
+          encryption_noti.style.display = 'none';
+        }, 2000);
+      }
+
+    })
+
+
+    function steganographyHiding(inputText, callback) {
+      let inputimage = document.getElementById('message_image').files[0]
+      console.log(inputimage)
+      let img = new Image()
+      img.src = URL.createObjectURL(inputimage)
+      img.onload = function () {
+        console.log('inside this onload loadin')
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const messageBytes = [];
+        for (let i = 0; i < inputText.length; i++) {
+          const byte = inputText.charCodeAt(i).toString(2).padStart(8, "0");
+          messageBytes.push(...byte);
+        }
+
+        // Hide the message in the image
+        let i = 0;
+
+        for (let y = 0; y < img.height; y++) {
+          for (let x = 0; x < img.width; x++) {
+            const pixel = ctx.getImageData(x, y, 1, 1); // it returns object containing the color data of specified pixel
+
+            let r = pixel.data[0];
+            let g = pixel.data[1];
+            let b = pixel.data[2];
+            let a = pixel.data[3];
+
+            if (i < messageBytes.length) {
+              r = setLSB(r, messageBytes[i++]);
+            }
+            if (i < messageBytes.length) {
+              g = setLSB(g, messageBytes[i++]);
+            }
+            if (i < messageBytes.length) {
+              b = setLSB(b, messageBytes[i++]);
+            }
+
+            ctx.fillStyle = `rgba(${r},${g},${b},${a})`;
+            ctx.fillRect(x, y, 1, 1);
+          }
+        }
+
+        let dataURL = canvas.toDataURL();
+        callback(dataURL)
+      }
+    }
+    const parentElement = document.getElementById('message_field');
+    parentElement.addEventListener('click', function (event) {
+      console.log('when clicked that btn')
+      var button = event.target
+      var inputTextLength = button.getAttribute('data-message-length');
+      var base64Data = button.getAttribute('data-image');
+      var img = new Image();
+      img.src = base64Data
+      console.log(inputTextLength * 8)
+      img.onload = function () {
+        //create a canvas to draw the image 
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        //draw the image onto the canvas
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        //get the image data from the canvas
+        let messageBytes = [];
+        let index = 0
+        for (let y = 0; y < img.height; y++) {
+          for (let x = 0; x < img.width; x++) {
+            const pixel = ctx.getImageData(x, y, 1, 1);
+            const r = getLSB(pixel.data[0]);
+            const g = getLSB(pixel.data[1]);
+            const b = getLSB(pixel.data[2]);
+            messageBytes.push(r, g, b);
+            index += 1
+            if (index >= inputTextLength * 8) {
+              break;
+            }
+            index += 1
+            if (index >= inputTextLength * 8) {
+              break;
+            }
+            index += 1
+            if (index >= inputTextLength * 8) {
+              break;
+            }
+
+          }
+         if (index >= inputTextLength * 8) {
+            break;
+          }
+        }
+
+        console.log(index)
+        let messageAscii = bitsToAscii(messageBytes);
+        console.log(messageAscii)
+        let privatekey = messageAscii.slice(0, 840)
+        let enc_message = messageAscii.slice(840)
+        console.log(privatekey.length);
+        privatekey = `-----BEGIN RSA PRIVATE KEY-----${privatekey}-----END RSA PRIVATE KEY-----`;
+        console.log(privatekey);
+
+        
+        enc_message = forge.util.decode64(enc_message)
+        console.log('message:', enc_message)
+        let privateKey = forge.pki.privateKeyFromPem(privatekey)
+        let decrypted = privateKey.decrypt(enc_message, 'RSA-OAEP')
+        console.log(decrypted)
+        display_message.innerHTML = decrypted
+      }
+    })
+
+
+    function bitsToAscii(bits) {
+      let ascii = "";
+      for (let i = 0; i < bits.length; i += 8) {
+        let byte = bits.slice(i, i + 8);
+        let charCode = parseInt(byte.join(""), 2);
+        ascii += String.fromCharCode(charCode);
+      }
+      return ascii;
+    }
+    function setLSB(num, bit) {
+      if (bit === "0") {
+        return num & ~1;
+      } else {
+        return num | 1;
+      }
+    }
+
+    //Function to get the least significant bit of a number
+    function getLSB(num) {
+      return (num & 1).toString();
+    }
+
+    /*
+Public Key:
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQnXOdx8U6amywdfSYIJMYVC1gsk
++WC+Oe6GMvVxOHEHSyiv2zDj6RgqxPgLh8M4/ybqOQo54GA2GUkZt8OdDPsRr7My
+XkCmh+00SfsXI52F4TaRlyd58zjUSFKFgs3hwHKbBOrs3u5wJpLUFQTjk+1tP/Zf
+NmO0z8iYKABjZGSHmQIDAQAB
+-----END PUBLIC KEY-----
+
+Private key:
+-----BEGIN RSA PRIVATE KEY-----
+MIICXwIBAAKBgQnXOdx8U6amywdfSYIJMYVC1gsk+WC+Oe6GMvVxOHEHSyiv2zDj
+6RgqxPgLh8M4/ybqOQo54GA2GUkZt8OdDPsRr7MyXkCmh+00SfsXI52F4TaRlyd5
+8zjUSFKFgs3hwHKbBOrs3u5wJpLUFQTjk+1tP/ZfNmO0z8iYKABjZGSHmQIDAQAB
+AoGBAjuFsPOztpcYcG+5qXqUdXsYPCcDPGNrmSVw4iXxfBL/hhd/TrQl6YmqbeuP
+vUZs/FMe5acDtFARpHflLMewbjPESdS7LjPtlwEQyBAacaIgpRWG79LHjylulRC2
+DdDwpMMDtZM5gcodQFGJFW7KKmeTsLNzm+jp0WT+xVdKeDVBAkEDRUMufQ5q4GGS
+8MhEI+FpvUWmNYo84aVgYBWsnsqzXknYneDuuIEk7PCe4yawMsxwlAjVjOf9xPij
+jOnF+r+5FQJBAwJGQr46KzKMjHvSdLzl+Ybsv+wYE/ZWe7qINMg2k9wI4I+Gq7mo
+znG5GCzbp5McIsqAqiomBz/N+oapaoTbbXUCQQJDd6G/L7FMpnt6ZkCyzJnQQ1or
+iAdm7HxtQ9L6+7N0uItRiZHu5ILX8hklgWtFXTU1X3/dS9rY7nTTXCCH0RWZAkEC
+0rh/2SKU82niSi+uLqsNFCbA8NGqsUB1+Q/hjlV/KD4ADUrLh3i2swd7gmNaePI2
+RpCwmLlzpc8rF/yPoDaOHQJBAeK/O4xd4r86x07rebv0mrWPKeBnUTYXQMsW72Al
+ydLNI7+Ckyh8cmbzHkLFh4Hz1mNXRXf9smRIvt58CSTHAMM=
+-----END RSA PRIVATE KEY-----
+
+Encryption of word hello
+BwJCFYejOXxWjApofOPStRrY2YytO7bwRP3lsVaVIUkyhsFkDtv2uGw/rPZFw1Gnf
+FUrhiK7IL0bJynqZQp0htSkw3vDGzRfuCHpc+3NEKgO+imvSjJANJvnxTqmcqMGdzl
+Q0kuOPyK29GOOfxImzWLM+WlX7KXMNYr/6dqUGB76
+
+Message that is to be hidden in image
+MIICXwIBAAKBgQnXOdx8U6amywdfSYIJMYVC1gsk+WC+Oe6GMvVxOHEHSyiv2zDj
+6RgqxPgLh8M4/ybqOQo54GA2GUkZt8OdDPsRr7MyXkCmh+00SfsXI52F4TaRlyd5
+8zjUSFKFgs3hwHKbBOrs3u5wJpLUFQTjk+1tP/ZfNmO0z8iYKABjZGSHmQIDAQAB
+AoGBAjuFsPOztpcYcG+5qXqUdXsYPCcDPGNrmSVw4iXxfBL/hhd/TrQl6YmqbeuP
+vUZs/FMe5acDtFARpHflLMewbjPESdS7LjPtlwEQyBAacaIgpRWG79LHjylulRC2
+DdDwpMMDtZM5gcodQFGJFW7KKmeTsLNzm+jp0WT+xVdKeDVBAkEDRUMufQ5q4GGS
+8MhEI+FpvUWmNYo84aVgYBWsnsqzXknYneDuuIEk7PCe4yawMsxwlAjVjOf9xPij
+jOnF+r+5FQJBAwJGQr46KzKMjHvSdLzl+Ybsv+wYE/ZWe7qINMg2k9wI4I+Gq7mo
+znG5GCzbp5McIsqAqiomBz/N+oapaoTbbXUCQQJDd6G/L7FMpnt6ZkCyzJnQQ1or
+iAdm7HxtQ9L6+7N0uItRiZHu5ILX8hklgWtFXTU1X3/dS9rY7nTTXCCH0RWZAkEC
+0rh/2SKU82niSi+uLqsNFCbA8NGqsUB1+Q/hjlV/KD4ADUrLh3i2swd7gmNaePI2
+RpCwmLlzpc8rF/yPoDaOHQJBAeK/O4xd4r86x07rebv0mrWPKeBnUTYXQMsW72Al
+ydLNI7+Ckyh8cmbzHkLFh4Hz1mNXRXf9smRIvt58CSTHAMM=BwJCFYejOXxWjApo
+fOPStRrY2YytO7bwRP3lsVaVIUkyhsFkDtv2uGw/rPZFw1GnfFUrhiK7IL0bJynq
+ZQp0htSkw3vDGzRfuCHpc+3NEKgO+imvSjJANJvnxTqmcqMGdzlQ0kuOPyK29GOO
+fxImzWLM+WlX7KXMNYr/6dqUGB76
+
+
+
+*/
+  </script>
+
+
+</body>

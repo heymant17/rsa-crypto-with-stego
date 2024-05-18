@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0%;
+    }
+   #register {
+    background-color: #36393f;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Great Vibes', cursive;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: aquamarine;
+    
+    margin-top: 20px;
+  }
+  h1:hover {
+    color: rgb(58, 163, 58)
+  }
+
+
+  form {
+    background-color: #202225;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    background-color: #2f3136;
+    border: none;
+    border-bottom: 2px solid #0f0f0f;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  #submit_button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #7289da;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+  }
+#submit_button:hover{
+    background-color: #516dd4;
+}
+  #error_message {
+    color: red;
+    font-size: 20px;
+    font-family: 'Great Vibes', cursive;
+    
+  }
+
+ 
+p{
+    color:white;
+    position: relative;
+    bottom:120px;
+    right:12px;
+    font-family: 'Great Vibes', cursive;
+}
+a{
+    text-decoration: none;
+    position: relative;
+    bottom: 142px;
+    left:110px;
+    color:rgb(131, 219, 131);
+    cursor: pointer;
+    font-family: 'Great Vibes', cursive;
+    
+}
+a:hover{
+    color: rgb(11, 165, 114);
+}
+</style>
+<body>
+    <div id="register">
+        <h1>CryptoWithStego</h1>
+        <form action="register" method="post" id="register-form">
+          {% csrf_token %}
+          <input type="text" name="first_name" placeholder="First Name" required><br>
+          <input type="text" name="last_name" placeholder="Last Name" required><br>
+          <input type="text" name="username" placeholder="UserName" required><br>
+          <input type="email" name="email" placeholder="Email" required><br>
+          <input type="password" name="pass1" placeholder="Password" required><br>
+          <input type="password" name="pass2" placeholder="ConfirmPassword" required><br>
+          <input id="submit_button" type="submit" value="Register"required>
+        </form>
+        <p>Already have an account?</p><a href="login">Login</a>
+        {% for message in messages %}
+        
+          <h3 id="error_message">Error: {{message}}</h3>
+        
+        {% endfor %}
+      </div>
+ 
+</body>
+<script>
+    let error_message = document.getElementById('error_message')
+    setTimeout(() => {
+        error_message.style.display = 'none'; 
+    }, 1000);
+</script>
+
+</html>

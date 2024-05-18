@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0%;
+    }
+
+    body {
+        background-color: #36393f;
+    }
+
+    #container {
+        background-color: #202225;
+        padding: 40px;
+        border-radius: 10px;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 100px auto;
+        align-items: center;
+
+    }
+
+    a {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        background-color: #7289da;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    a:hover {
+        background-color: #516dd4;
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Great Vibes', cursive;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: aquamarine;
+        margin-top: 20px;
+    }
+
+    h1:hover {
+        color: rgb(58, 163, 58)
+    }
+</style>
+
+<body>
+
+    <div id="container">
+        <h1 id="app-title">CryptowithStego</h1>
+        <a href="login">Login</a>
+        <a href="register">Register</a><br>
+    </div>
+
+
+
+</body>
+
+</html>

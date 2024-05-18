@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0%;
+    }
+
+    body {
+        background-color: #36393f;
+
+    }
+
+    #available_room {
+        background-color: #202225;
+        padding: 40px;
+        border-radius: 10px;
+        width: 300px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px ;
+       
+
+    }
+
+    a {
+        width: 60%;
+        padding: 10px;
+        font-size: 18px;
+        background-color: #7289da;
+        color: white;
+        border-radius: 5px;
+        border: 1px solid black;
+        cursor: pointer;
+        margin-top: 20px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    a:hover {
+        background-color: #516dd4;
+    }
+
+    h1 {
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+        font-family: sans-serif;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Great Vibes', cursive;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: aquamarine;
+        margin-top: 20px;
+        margin-left: 580px;
+    }
+    #wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+      
+        
+    }
+</style>
+
+<body>
+    <h2>Available Rooms!</h2>
+  <div id="wrapper">
+    {% for room in rooms %}
+    <div id="available_room">
+        <h1>{{room.roomname}}</h1>
+        <a href="{% url 'room' room.roomname %}">Enter room</a>
+        <hr>
+    </div>
+    {% endfor %}
+
+</div>
+</body>
+
+</html>
